@@ -4,7 +4,7 @@ En el presente ejercicio se va a aprender a visualizar y manipular datos LiDAR p
 
 ## 1. Descarga de datos LiDAR-PNOA
 
-Para la descarga de datos LiDAR-PNOA, se aconseja que se sigan las instrucciones del siguiente video utilizando la zona de estudio descargable en ![](./Limite_monte/MONTE_FILABRES.kml) 
+Para la descarga de datos LiDAR-PNOA, se aconseja que se sigan las instrucciones del siguiente video utilizando la zona de estudio descargable en [aqui](./Limite_monte/MONTE_FILABRES.kml) 
 
 [![Alt text](https://img.youtube.com/vi/2u88We_Zyzg/0.jpg)](https://www.youtube.com/watch?v=2u88We_Zyzg)
 
