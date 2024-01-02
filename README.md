@@ -70,12 +70,6 @@ Para ver el bloque de cabecera del catálogo, se puede acceder a la tabla en don
 catalogo@data
 ```
 
-File.Signature |	File.Source.ID |	GUID |	Version.Major |	Version.Minor |	System.Identifier |	Generating.Software |	File.Creation.Day.of.Year |	File.Creation.Year |	Header.Size |	Offset.to.point.data |	Number.of.variable.length.records |	Point.Data.Format.ID |	Point.Data.Record.Length |	Number.of.point.records |	X.scale.factor |	Y.scale.factor |	Z.scale.factor |	X.offset |	Y.offset |	Z.offset |	Max.X |	Min.X |	Max.Y |	Min.Y |	Max.Z |	Min.Z |	CRS |	Number.of.1st.return |	Number.of.2nd.return |	Number.of.3rd.return |	Number.of.4th.return |	Number.of.5th.return |	filename |
-LASF |	0 |	00000000-0000-0000-0000-000000000000 |	1 |	2 	|	TerraScan |	13 |	2017 |	227 |	633 |	3 |	3 |	34 |	4976583 |	0.001 |	0.001 |	0.001 |	534000 |	4118000 |	0 |	536000 |	534000 |	4120000 |	4118000 |	1963.45 |	1843.33 |	25830 |	3893823 |	1072023 |	10705 |	32 |	0 |	E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_534-4120_ORT-CLA-CIR.laz |
-LASF |	0 |	00000000-0000-0000-0000-000000000000 |	1 |	2 	|	TerraScan |	13 |	2017 |	227 |	633 |	3 |	3 |	34 |	4633930 |	0.001 |	0.001 |	0.001 |	534000 |	4120000 |	0 |	536000 |	534000 |	4122000 |	4120000 |	1991.47 |	1698.75 |	25830 |	3970075 |	660084 |	3718 |	53 |	0 |	E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_534-4122_ORT-CLA-CIR.laz |
-LASF |	0 |	00000000-0000-0000-0000-000000000000 |	1 |	2 	|	TerraScan |	13 |	2017 |	227 |	633 |	3 |	3 |	34 |	5247509 |	0.001 |	0.001 |	0.001 |	536000 |	4118000 |	0 |	538000 |	536000 |	4120000 |	4118000 |	2060.91 |	1700.38 |	25830 |	4025607 |	1210920 |	10887 |	95 |	0 |	E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_536-4120_ORT-CLA-CIR.laz |
-LASF |	0 |	00000000-0000-0000-0000-000000000000 |	1 |	2 	|	TerraScan |	13 |	2017 |	227 |	633 |	3 |	3 |	34 |	4550014 |	0.001 |	0.001 |	0.001 |	536000 |	4120000 |	0 |	538000 |	536000 |	4122000 |	4120000 |	2052.63 |	1547.24 |	25830 |	3698568 |	838536 |	12721 |	189 |	0 |	E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_536-4122_ORT-CLA-CIR.laz |
-
 En él se puede identificar la versión LAS de los datos, el ID del proyecto, el software generador, la fecha de creación del archivo y la extensión del proyecto, entre otra información.
 
 Un paso importante en el procesado de datos LiDAR es asegurarse que los archivos están completos y son válidos. Para ello, se realiza una inspección de la consistecia de los archivos del catálogo a través de la función *las_check()*.
@@ -85,7 +79,7 @@ Un paso importante en el procesado de datos LiDAR es asegurarse que los archivos
 las_check(catalogo)
 ```
 
-![](E:/MOOC_LiDAR/Descarga/las_check.PNG)
+![](./Auxiliares/las_check.PNG)
 
 La función muestra que existen incoherencias respecto a los offsets (compensaciones). Además indica que los datos no están normalizados, ni indexados.
 
@@ -100,31 +94,83 @@ $Z~coordenada~=(Z~registrado~*Z~escalado~)+Z~offset~$
 ```r
 #Valores de offset de los archivos del catalogo. Coordenada X
 catalogo@data$X.offset
+´´´
 
+```r annotate
+## [1] 534000 534000 536000 536000
+´´´
+
+```r
 #Valores de offset de los archivos del catalogo. Coordenada Y
 catalogo@data$Y.offset
+´´´
 
+```r annotate
+## [1] 4118000 4120000 4118000 4120000
+´´´
+
+```r
 #Valores de offset de los archivos del catalogo. Coordenada Z
 catalogo@data$Z.offset
+´´´
 
+```r annotate
+## [1] 0 0 0 0
+´´´
+
+```r
 #Valores mínimos de los archivos del catalogo. Coordenada X
 catalogo@data$Min.X
+´´´
 
+```r annotate
+## [1] 534000 534000 536000 536000
+´´´
+
+```r
 #Valores máximos de los archivos del catalogo. Coordenada X
 catalogo@data$Max.X
+´´´
 
+```r annotate
+## [1] 536000 536000 538000 538000
+´´´
+
+```r
 #Valores mínimos de los archivos del catalogo. Coordenada Y
 catalogo@data$Min.Y
+´´´
 
+```r annotate
+## [1] 4118000 4120000 4118000 4120000
+´´´
+
+```r
 #Valores máximos de los archivos del catalogo. Coordenada Y
 catalogo@data$Max.Y
+´´´
 
+```r annotate
+## [1] 4120000 4122000 4120000 4122000
+´´´
+
+```r
 #Valores mínimos de los archivos del catalogo. Coordenada Z
 catalogo@data$Min.Z
+´´´
 
+```r annotate
+## [1] 1843.33 1698.75 1700.38 1547.24
+´´´
+
+```r
 #Valores máximos de los archivos del catalogo. Coordenada Z
 catalogo@data$Max.Z
 ```
+
+```r annotate
+## [1] 1963.45 1991.47 2060.91 2052.63
+´´´
 
 El valor de los offsets en X e Y coinciden con sus valores mínimos respectivos en los 4 archivos. Resulta evidente que se trata de un error en la cabecera y que los valores de offset deberían ser 0 en las 3 dimensiones. Para corregir la incosistencia, se cambia el valor de los offsets:
 
@@ -132,21 +178,19 @@ El valor de los offsets en X e Y coinciden con sus valores mínimos respectivos 
 #Corregir la cabecera
 catalogo@data$X.offset<-c(0,0,0,0)
 catalogo@data$Y.offset<-c(0,0,0,0)
-```
 
-```r
 #Volvemos a comprobar la validacion de los datos
 las_check(catalogo)#Ya está corregido
 ```
 
-![](E:/MOOC_LiDAR/Descarga/las_check2.PNG)
+![](./Auxiliares/las_check2.PNG)
 
 #### 2.1.2. Como un único archivo
 
 Además del catálogo de datos LiDAR, también se puede visualizar un único archivo .las
 
 ```r
-lidar534_4120<-readLAS("E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_534-4120_ORT-CLA-CIR.laz")
+lidar534_4120<-readLAS("E:/DESCARGA/PNOA_2014_AND-SE_534-4120_ORT-CLA-CIR.laz") #Adaptar a la ruta de descarga utilizada
 ```
 
 La estructura interna de los datos LiDAR se hace accesible al usuario a través de tablas de datos en los que queda recogido, como mínimo, el valor de:
@@ -196,6 +240,8 @@ library(mapview)
 plot(catalogo, map = TRUE, map.type = "Esri.WorldImagery")
 ```
 
+![](./Auxiliares/mapa.PNG)
+
 Para visualizar la nube de puntos en 3 dimensiones se ha seleccionado una zona según sus coordenadas.
 
 ##### Con un solo archivo
@@ -211,7 +257,7 @@ recorte<-clip_rectangle(lidar534_4120,
 plot(recorte)
 ```
 
-![](E:/MOOC_LiDAR/Descarga/plot_recorte.PNG)
+![](./Auxiliares/recorte.PNG)
 
 Se pueden cambiar algunas opciones para mejorar la visualización de los datos como el fondo, la presencia de ejes guía en cada dimensión y la presencia de leyenda del mapa.
 
@@ -219,7 +265,7 @@ Se pueden cambiar algunas opciones para mejorar la visualización de los datos c
 plot(recorte,bg = "white", axis = TRUE, legend = TRUE)
 ```
 
-![](E:/MOOC_LiDAR/Descarga/plot_recorte2.PNG)
+![](./Auxiliares/recorte2.PNG)
 
 ##### Con un catálogo de datos
 
@@ -228,19 +274,49 @@ Para visualizar esta misma zona trabajando desde el catálogo, es necesario ejec
 ```r
 #Nombre de los archivos del catalogo
 catalogo@data$filename
+```
 
+```r annotate
+## [1] "E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_534-4120_ORT-CLA-CIR.laz"
+## [2] "E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_534-4122_ORT-CLA-CIR.laz"
+## [3] "E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_536-4120_ORT-CLA-CIR.laz"
+## [4] "E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_536-4122_ORT-CLA-CIR.laz"
+```
+
+```r
 #Coordenada X mínima del recorte
 catalogo@data$Min.X[1]+1850
+```
 
+```r annotate
+## [1] 535850
+```
+
+```r
 #Coordenada Y mínima del recorte
 catalogo@data$Min.Y[1]+1170
+```
 
+```r annotate
+## [1] 4119170
+```
+
+```r
 #Coordenada X máxima del recorte
 catalogo@data$Min.X[1]+2000
+```
 
+```r annotate
+## [1] 536000
+```
+
+```r
 #Coordenada Y máxima del recorte
 catalogo@data$Min.Y[1]+1320
+```
 
+```r annotate
+## [1] 4119320
 ```
 
 ```r
@@ -251,13 +327,13 @@ recorte_catalogo<-readLAS((catalogo[[34]][1]),select = "xyz",
 plot(recorte_catalogo)
 ```
 
-![](E:/MOOC_LiDAR/Descarga/plot_recorte1b.PNG)
+![](./Auxiliares/recorte1b.PNG)
 
 Como se puede observar, el resultado es el mismo.
 
 #### 2.2.2. Distribución espacial de la densidad de pulsos
 
-Una de las comprobaciones cruciales es la densidad de pulsos Con ella se puede determinar si la nube de puntos resulta útil para la finalidad que se le quiera dar según el tipo de masa forestal con la que se esté trabajando, Ya se había determinado en el punto 2.1.1. que los datos que se están usando tienen una densidad media de puntos de 2.1.2. Sin embargo, la distribución de los pulsos puede variar espacialmente en el área de estudio.
+Una de las comprobaciones cruciales es la densidad de pulsos. Con ella se puede determinar si la nube de puntos resulta útil para la finalidad que se le quiera dar según el tipo de masa forestal con la que se esté trabajando. Ya se había determinado en el punto 2.1.1. que los datos que se están usando tienen una densidad media de puntos de 2.1.2. Sin embargo, la distribución de los pulsos puede variar espacialmente en el área de estudio.
 
 Con la función *retrieve_pulses()* se consigue recuperar cada pulso individual usando el tiempo GPS para identificarlos y guardándolo como un atributo extra. A través de él, se consigue crear un mapa de densidades de retornos y de pulsos.
 
@@ -266,7 +342,21 @@ lidar534_4120 <- retrieve_pulses(lidar534_4120)
 
 densidad<-grid_density(lidar534_4120, res = 5)
 densidad
+```
 
+```r annotate
+## class      : RasterBrick 
+## dimensions : 400, 400, 160000, 2  (nrow, ncol, ncell, nlayers)
+## resolution : 5, 5  (x, y)
+## extent     : 534000, 536000, 4118000, 4120000  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : point_density, pulse_density 
+## min values :             0,             0 
+## max values :         68.92,         51.08
+```
+
+```r
 #Caracterizacion del raster como de valores discretos
 library(raster)
 densidad[[2]] <- ratify(densidad[[2]])
@@ -277,6 +367,8 @@ mapview(densidad[[2]],
         at = c(0,0.3,1,2,3,4,5))
 ```
 
+![](./Auxiliares/densidad.PNG)
+
 ##### Con un catálogo de datos
 
 Para trabajar desde el catalogo de datos LiDAR, se pueden usar las mismas funciones, sustituyendo el argumento *lidar534_4120* por *catalogo*. Los resultados serán extensibles a toda la zona de los 4 archivos LiDAR descargados. El tiempo de procesado se verá incrementado proporcionalmente al aumento de superficie.
@@ -284,13 +376,30 @@ Para trabajar desde el catalogo de datos LiDAR, se pueden usar las mismas funcio
 ```r
 densidad_catalogo<-grid_density(catalogo, res = 5)
 densidad_catalogo
+```
 
+```r annotate
+## class      : RasterLayer 
+## dimensions : 800, 800, 640000  (nrow, ncol, ncell)
+## resolution : 5, 5  (x, y)
+## extent     : 534000, 538000, 4118000, 4122000  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : layer 
+## values     : 0, 68.92  (min, max)
+```
+
+![](./Auxiliares/densidad_catalogo.PNG)
+
+```r
 mapview(densidad_catalogo,
         col.regions = c("red","green","darkgreen","yellow","orange","red","brown"),
         at = c(0,0.3,1,2,3,4,5))
 ```
 
-Como puede comprobarse, aunque el valor medio de la densidad de puntos del archivo (1.2) supera con creces los requisitos del proyecto LiDAR-PNOA (0.5 pulsos/m^2^), la distribución de los mismos no es homogenea. En las zonas de solape entre líneas de vuelo es considerablemente mayor que en las posiciones intermedias, en las que llegan a encontrarse huecos. Dicha distribución tendrá unas consecuencias en la obtención de las variables dasométricas del inventario.
+![](./Auxiliares/densidad_catalogo2.PNG)
+
+Como puede comprobarse, aunque el valor medio de la densidad de puntos del archivo (1.2) supera con creces los requisitos del proyecto LiDAR-PNOA (0.5 pulsos/m^2^), la distribución de los mismos no es homogenea. En las zonas de solape entre líneas de vuelo es considerablemente mayor que en las posiciones intermedias, en las que llegan a encontrarse huecos. Dicha distribución tendrá consecuencias en la obtención de las variables dasométricas del inventario.
 
 #### 2.2.3. Comprobar clasificación de los datos
 
@@ -298,12 +407,18 @@ Cuando en el Pliego de Prescripciones Tecnicas solicitado en un vuelo LiDAR se i
 
 La sociedad americana de fotogrametría y teledetección (ASPRS) establece la codificación de las clasificaciones de puntos LiDAR según la siguiente tabla:
 
-![](E:/MOOC_LiDAR/Descarga/Tabla_especificaciones.PNG)
+![](./Auxiliares/clasificacion.PNG)
 
 En nuestros datos la clasificación es la siguiente.
 
 ```r
 table(lidar534_4120@data$Classification)
+```
+
+```r annotate
+## 
+##       2       3       4       5       7      12 
+## 1233623  115399  100706 1141412  327041 2058402
 ```
 
 En los datos hay puntos clasificados como suelo (2), vegetación baja (3), media (4) y alta (5), puntos anómalos o ruido (7) y, en este caso, se emplea el valor reservado 12 para incluir los puntos localizados en la zona de solape entre líneas de vuelo.
@@ -314,7 +429,7 @@ También se puede visualizar la nube de puntos según la clasificación que ha r
 plot(recorte,color="Classification",axis = TRUE, legend = TRUE)
 ```
 
-![](E:/MOOC_LiDAR/Descarga/plot_recorte3.PNG)
+![](./Auxiliares/clasificacion2.PNG)
 
 O comprobar los retornos que han sido clasificados como suelo.
 
@@ -326,7 +441,7 @@ plot(recorte[which(recorte$Classification==2),],
      color="Classification",axis = TRUE)
 ```
 
-![](E:/MOOC_LiDAR/Descarga/plot_recorte4.PNG)
+![](./Auxiliares/suelo.PNG)
 
 #### 2.2.4 Comprobacion de ángulos de escaneo de vuelo
 
@@ -338,12 +453,17 @@ Generalmente, un ángulo de escaneo amplio va a suponer un ancho de pasada mayor
 summary(lidar534_4120@data$ScanAngleRank)
 ```
 
+```r annotate
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -21.0000 -11.0000  -2.0000   0.1381  13.0000  26.0000
+```
+
 ```r
 #Ver puntos según su ángulo de escaneo
 plot(recorte,color="ScanAngleRank",axis = TRUE)
 ```
 
-![](E:/MOOC_LiDAR/Descarga/plot_recorte6.PNG)
+![](./Auxiliares/angulo_escaneo.PNG)
 
 #### 2.2.5. Comprobar solapes entre líneas de vuelo
 
@@ -355,17 +475,31 @@ plot(recorte[which(recorte$Classification==12),],
      color="Classification",axis = TRUE)
 ```
 
-![](E:/MOOC_LiDAR/Descarga/plot_recorte5.PNG)
+![](./Auxiliares/lineas_escaneo.PNG)
 
 ```r
 solape <- grid_metrics(lidar534_4120,
                            ~max(Classification), 
                            filter=~Classification == 12, res=5)
 solape
-
-mapview(solape)
-
 ```
+
+```r annotate
+## class      : RasterLayer 
+## dimensions : 400, 400, 160000  (nrow, ncol, ncell)
+## resolution : 5, 5  (x, y)
+## extent     : 534000, 536000, 4118000, 4120000  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : V1 
+## values     : 12, 12  (min, max)
+```
+
+```r
+mapview(solape)
+```
+
+![](./Auxiliares/solape.PNG)
 
 #### 2.2.6. Comprobar líneas de vuelo
 
@@ -375,6 +509,12 @@ A veces, cuando la restitución de las nubes de puntos de las líneas de vuelo n
 table(lidar534_4120@data$PointSourceID)
 ```
 
+```r annotate
+## 
+##     197     198     199 
+## 1584834 2537227  854522
+```
+
 Como puede comprobarse, en el archivo participan 3 líneas de vuelo. Se puede visualizar su distribución espacial reconstruyendo las líneas de vuelo a través de los tiempos GPS asociados a cada pulso a través de la función *retrieve_flightlines()*.
 
 ```r
@@ -382,7 +522,7 @@ lidar534_4120<-retrieve_flightlines(lidar534_4120, dt = 30)
 plot(lidar534_4120, color = "flightlineID")
 ```
 
-![](E:/MOOC_LiDAR/Descarga/lineas_vuelo.PNG)
+![](./Auxiliares/lineas_vuelo.PNG)
 
 Y también se puede estimar la posición del sensor y, por tanto, la del avión o UAV en el que iba montado, a través de la función *track_sensor()*
 
@@ -393,6 +533,17 @@ lineas_vuelo <- track_sensor(lidar534_4120,
 lineas_vuelo
 ```
 
+```r annotate
+## class       : SpatialPointsDataFrame 
+## features    : 149 
+## extent      : 533506.3, 536441.1, 4117610, 4119889  (xmin, xmax, ymin, ymax)
+## crs         : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## variables   : 4
+## names       :        Z,   gpstime, PointSourceID, SCORE 
+## min values  : 3173.555, 103038679,           197,    18 
+## max values  : 4588.697, 103040020,           199,   500
+```
+
 El resultado corresponde a una tabla de puntos con información espacial asociada con la situación del sensor en el recorrido de las líneas de vuelo. Podría, por tanto, guardarse como un archivo tipo shapefile.
 
 ```r
@@ -400,7 +551,7 @@ x<-plot(lidar534_4120)
 add_flightlines3d(x, lineas_vuelo, radius = 10)
 ```
 
-![](E:/MOOC_LiDAR/Descarga/lineas_vuelo2.PNG)
+![](./Auxiliares/lineas_vuelo2.PNG)
 
 Para un catálogo de datos, se haría de la siguiente forma:
 
@@ -411,6 +562,8 @@ lineas_vuelo_catalogo <- track_sensor(catalogo,
 plot(catalogo)
 plot(lineas_vuelo_catalogo, add = TRUE)
 ```
+
+![](./Auxiliares/lineas_vuelo3.PNG)
 
 ### 2.3. Crear raster de intensidades
 
@@ -428,7 +581,7 @@ plot(recorte,color="Intensity",
      colorPalette=gray.colors(10, start = 0, end = 1))
 ```
 
-![](E:/MOOC_LiDAR/Descarga/plot_recorte7.PNG)
+![](./Auxiliares/intensidad.PNG)
 
 ```r
 #Generar raster de intensidades
@@ -437,6 +590,17 @@ intensidad <- grid_metrics(lidar534_4120,
                            filter=~ReturnNumber == 1, res=5)
 
 intensidad
+```
+
+```r annotate
+## class      : RasterLayer 
+## dimensions : 400, 400, 160000  (nrow, ncol, ncell)
+## resolution : 5, 5  (x, y)
+## extent     : 534000, 536000, 4118000, 4120000  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : V1 
+## values     : 8, 241.4286  (min, max)
 ```
 
 Y lo visualizamos el resultado sobre un mapa.
@@ -448,10 +612,306 @@ mapview(intensidad,
 
 ```
 
-
-
+![](./Auxiliares/intensidad2.PNG)
 
 ## 3. Generación de Modelo del Terreno, Modelo de Superficies y Modelo de Vegetación
+
+### 3.1. Generar el modelo digital del terreno o MDT
+
+Un Modelo Digital del Terreno o MDT es una estructura numérica de datos que representa la distribución espacial de la variable elevación de forma cuantitativa y continua.
+
+La selección de la resolución del MDT es uno de los problemas clave del modelado digital del terreno. Para decidir el tamaño del pixel que tendrá el MDT, se revisa el número de puntos que tenemos clasificados como suelo.
+
+```r
+#Densidad media de puntos clasificados como suelo
+density(lidar534_4120[which(lidar534_4120@data$Classification==2),])
+```
+
+```r annotate
+## [1] 0.3084148
+```
+
+```r
+#Separación media entre puntos clasificados como suelo
+1/sqrt(density(lidar534_4120[which(lidar534_4120@data$Classification==2),]))
+```
+
+```r annotate
+## [1] 1.800663
+```
+
+La resolución para el MDT, teniendo en cuenta la densidad media de puntos de la nube clasificados como suelo, podría ser de 2 m. Sin embargo, también debe tenerse en cuenta la distribución espacial de la densidad de pulsos.
+
+```r
+#Evaluación de la distribución espacial de puntos clasificados como suelo
+densidad_suelo<-grid_density(lidar534_4120[which(lidar534_4120@data$Classification==2),], res = 5)
+densidad_suelo
+```
+
+```r annotate
+## class      : RasterLayer 
+## dimensions : 400, 400, 160000  (nrow, ncol, ncell)
+## resolution : 5, 5  (x, y)
+## extent     : 534000, 536000, 4118000, 4120000  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : layer 
+## values     : 0, 2.36  (min, max)
+```
+
+#Visualización de la distribución espacial de la densidad de los puntos de suelo
+library(mapview)
+mapview(densidad_suelo[[1]],
+        col.regions = c("red","green","darkgreen","yellow","orange","red","brown"),
+        at = c(0,0.05,0.1,0.2,0.3,0.4,0.5,2))
+```
+
+![](./Auxiliares/densidad_suelo.PNG)
+
+Se observa en el mapa que existen zonas con densidades de puntos de suelo por debajo de la densidad media. Sería conveniente generar el modelo, teniéndolas en cuenta y, por eso, se ajusta a la separación máxima de pulsos proveniente de los valores mínimos de densidad de puntos de suelo. 
+
+```r
+#Separación entre pulsos
+1/sqrt(0.05)
+```
+
+```r annotate
+## [1] 4.472136
+```
+
+Se generará, por tanto, el MDT con un tamaño de píxel de 5m, redondeando el valor de la separación entre pulsos.
+
+Ahora, se va a emplear la función *grid_terrain* para realizar la interpolación de dichos puntos de suelo. Se trata de una función que puede trabajar tanto con archivos .las, como con catálogo de datos LiDAR. De los distintos métodos de interpolación espacial que permite la herramienta, se ha seleccionado un algoritmo basado en una red de triangulación *tin()*. Este enfoque incluye dos pasos. Primero, se realiza una triangulación de Delaunay de puntos distribuidos irregularmente. Y, en segundo lugar, se estiman los valores de elevación en los nodos regulares de la cuadrícula. Los triángulos se unen ajustando un plano a tres puntos contiguos, formando un mosaico sobre el terreno que puede adaptarse a la superficie con diferente grado de detalle, en función de la complejidad del relieve.
+
+```r
+mdt <- grid_terrain(lidar534_4120, res = 5, algorithm=tin())
+
+mdt
+```
+
+```r annotate
+## class      : RasterLayer 
+## dimensions : 400, 400, 160000  (nrow, ncol, ncell)
+## resolution : 5, 5  (x, y)
+## extent     : 534000, 536000, 4118000, 4120000  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : Z 
+## values     : 1843.864, 1960.49  (min, max)
+```
+
+Y se visualizan los resultados:
+
+```r
+mapview(mdt,col = terrain.colors(50),maxpixels=1000000,
+        map.type = "Esri.WorldImagery")
+```
+
+![](./Auxiliares/mdt.PNG)
+
+Como puede apreciarse, los valores de alturas del terreno en esta zona varían entre los 1843 m y los 1960 m de altitud.
+
+#### 3.1.1. Mapas auxiliares del terreno
+
+Los MDT permiten construir una serie de modelos derivados elaborados a partir de la información en él contenida y reflejan características morfológicas simples, como la pendiente o la orientación. Incorporando dicha información es posible mejorar la toma de decisiones en la gestión de masas forestales. 
+
+##### Pendientes
+```r
+#Cálculo de la pendiente del terreno en radianes
+pendiente_rad <- terrain(mdt, opt='slope')
+
+#Cálculo de la pendiente del terreno en grados
+pendiente_grados <- terrain(mdt, opt='slope',unit="degrees")
+
+#Visualización de los resultados
+mapview(pendiente_grados,col = terrain.colors(50),maxpixels=1000000,
+        map.type = "Esri.WorldImagery")
+```
+
+![](./Auxiliares/pendientes.PNG)
+
+##### Orientaciones
+```r
+#Cálculo de las orientaciones del terreno
+orientacion_rad <- terrain(mdt, opt='aspect')
+orientacion_grados <- terrain(mdt, opt='aspect',unit="degrees")
+
+# Convertir un raster continuo en un raster categorico a través de una matriz
+matriz_reclas<-c(0,22.5,1,
+                 22.5,67.5,2,
+                 67.5,112.5,3,
+                 112.5,157.5,4,
+                 157.5,202.5,5,
+                 202.5,247.5,6,
+                 247.5,292.5,7,
+                 292.5,337.5,8,
+                 337.5,360,1)
+
+matriz_reclas<-matrix(matriz_reclas,ncol=3,byrow=TRUE)
+
+orientacion_reclas <- reclassify(orientacion_grados, 
+                                 rcl = matriz_reclas)
+
+orientacion_reclas <- ratify(orientacion_reclas)
+
+# Añadir los nombres de cada clase
+levels(orientacion_reclas)[[1]]$label <- c("Norte", "Noreste","Este",
+                                           "Sureste","Sur","Suroeste",
+                                           "Oeste","Noroeste")
+levels(orientacion_reclas)
+```
+
+```r annotate
+## [[1]]
+##   ID    label
+## 1  1    Norte
+## 2  2  Noreste
+## 3  3     Este
+## 4  4  Sureste
+## 5  5      Sur
+## 6  6 Suroeste
+## 7  7    Oeste
+## 8  8 Noroeste
+```
+
+```r
+#Visualizar orientaciones
+mapview(orientacion_reclas,
+        col.regions = c("red","orange","yellow","green",
+                        "cyan","deepskyblue2","blue","deeppink"),
+        maxpixels=1000000, map.type = "Esri.WorldImagery")
+```
+
+![](./Auxiliares/orientaciones.PNG)
+
+##### Mapa de Sombras
+```r
+sombras <- hillShade(pendiente_rad, orientacion_rad, angle=45, direction=315)
+
+mapview(sombras,col.regions=hcl.colors(255,"Gray"),maxpixels=1000000,
+        map.type = "Esri.WorldImagery")
+```
+
+![](./Auxiliares/sombras.PNG)
+
+### 3.2. Generar el modelo digital de superficies o MDS
+
+La superficie topográfica que incluye todos los objetos que hay sobre el terreno como edificios, vegetación, carreteras y elementos naturales del terreno constituye el modelo digital de superficies o MDS. Se obtiene mediante la interpolación de los puntos más altos de cada tamaño de pixel. 
+
+```r
+lidar534_4120.mas.altos<-decimate_points(lidar534_4120, highest(res=5))
+
+mds<-grid_canopy(lidar534_4120.mas.altos,res=5,dsmtin(max_edge=0))
+
+mds
+```
+
+```r annotate
+## class      : RasterLayer 
+## dimensions : 400, 400, 160000  (nrow, ncol, ncell)
+## resolution : 5, 5  (x, y)
+## extent     : 534000, 536000, 4118000, 4120000  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : Z 
+## values     : 1847.705, 1962.222  (min, max)
+```
+
+Y su visualización
+
+```r
+mapview(mds,col.regions=hcl.colors(255,"Gray"),maxpixels=1000000)
+```
+
+![](./Auxiliares/mds.PNG)
+
+Aunque no difiere mucho del MDT, en el mapa se pueden intuir zonas rasas sin arbolado y zonas con vegetación.
+
+### 3.3. Generar el modelo digital normalizado de superficies (nMDS) o modelo digital de vegetación o de copas (MDC)
+
+El modelo de superficies normalizado consiste en el mismo modelo digital de superficies en el que todos sus elementos se encuentran referenciados respecto al suelo, lo que permite conocer la altura de cada elemento. Cuando dicho modelo se encuentra sobre una superficie forestal se le conoce como modelo de vegetación o de copas. Este modelo aporta información de la altura absoluta de la vegetación, donde se pueden medir alturas del arbolado. A partir de este modelo se pueden obtener subproductos relativos a intervalos de la vegetación, clasificándola como vegetación baja, media y alta. De igual forma, cuando se encuentra sobre una ciudad se conoce como modelo digital de edificios.
+
+#### 3.3.1. Método de diferencias
+
+En este método el modelo digital de vegetación se obtiene mediante la sustracción del modelo del terreno al modelo de superficies como un simple cálculo matemático. 
+
+```r
+nmds1<-mds-mdt
+
+nmds1
+```
+
+```r annotate
+## class      : RasterLayer 
+## dimensions : 400, 400, 160000  (nrow, ncol, ncell)
+## resolution : 5, 5  (x, y)
+## extent     : 534000, 536000, 4118000, 4120000  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : layer 
+## values     : -2.018, 21.051  (min, max)
+```
+
+Si se observa el rango de valores del raster resultante aparecen valores negativos. Sin embargo, cuando se estudia el histograma de los datos, se puede concluir que su número no es representativo y, salvo algunos datos aislados, la mayorìa de ellos no alcanzan los 20 cm de diferencia con la superficie.
+
+```r
+hist(nmds1,breaks=250,xlim=c(-2.5,0))
+```
+
+![](./Auxiliares/histograma.PNG)
+
+Y se visualiza:
+
+```r
+mapview(nmds1,col.regions=rev(hcl.colors(17,"Spectral")),
+        at = c(-Inf,0,1,2,3,4,5,6,7,8,9,10,11,13,14,15),maxpixels=1000000)
+```
+
+![](./Auxiliares/nmds1.PNG)
+
+Como se observa en el mapa, la vegetación de la zona alcanza alturas inferiores a 15 m.
+
+#### 3.3.2.Método de normalización de la nube de puntos
+
+En este método el modelo digital de vegetación se obtiene mediante la interpolación de los puntos clasificados como suelo y vegetación. 
+
+```r
+archivo_norm<-normalize_height(lidar534_4120, tin())
+```
+
+Para visualizar el resultado, se va a utilizar un recorte de la zona
+
+```r
+recorte_norm<-clip_rectangle(archivo_norm,
+                             min(archivo_norm$X)+1850,
+                             min(archivo_norm$Y)+1170,
+                             min(archivo_norm$X)+2000,
+                             min(archivo_norm$Y)+1320)
+
+plot(recorte_norm,bg = "white", axis = TRUE, 
+     legend = TRUE,size = 3)
+```
+
+![](./Auxiliares/normalizado.PNG)
+
+Se puede comparar esta imagen con la generada en la visualización de los datos sin normalizar del ejercicio de visualización de datos LiDAR y cómo el efecto del terreno ha desaparecido.
+
+Y ahora, se rasteriza el resultado de forma análoga a como se hizo con el modelo de superficies. 
+
+```r
+nmds2<-grid_canopy(archivo_norm,res=2,dsmtin(max_edge=0))
+
+nmds2
+```
+
+Finalmente, se visualizan los resultados.
+```r
+mapview(nmds2,col.regions=rev(hcl.colors(17,"Spectral")),
+        at = c(-Inf,0,1,2,3,4,5,6,7,8,9,10,11,13,14,15),
+        maxpixels=1000000)
+```
+
+![](./Auxiliares/nmds2.PNG)
 
 ## 4. Extracción de métricas de parcela y modelización de variables de inventario
 
