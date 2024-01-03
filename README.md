@@ -1,3 +1,7 @@
+[![DOI](https://zenodo.org/badge/694534100.svg)](https://zenodo.org/doi/10.5281/zenodo.10454197)
+
+Mª Ángeles Varo Martínez y Rafael Mª Navarro Cerrillo
+
 # Capítulo 13: Sensores activos en ciencias forestales: LiDAR
 
 En el presente ejercicio se va a aprender a visualizar y manipular datos LiDAR para conseguir información de la estructura de la vegetación tanto a nivel de masa, como a nivel de árbol individual.
