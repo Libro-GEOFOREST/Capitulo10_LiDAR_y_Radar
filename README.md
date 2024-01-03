@@ -1440,3 +1440,166 @@ legend("topleft",legend=c(paste0("r=",round(correlaciones,2)),
 Finalmente, se da por bueno el modelo generado. 
 
 ## 5. Extracción de métricas de superficie y resultados de variables de inventario
+
+### 5.1. Calculo del tamaño de pixel
+
+Una de los puntos clave de la extrapolacion de los resultados del modelo a toda la superficie es la decision del tamaño de pixel del raster que va a representar la variable calculada. Generalmente, se establece que el tamaño de celda debe ser equivalente al de tamaño de la parcela medida en campo para que los parametros estadisticos sean coherentes.
+
+Por eso, si el radio de las parcelas era de 11 metros.
+
+```r
+#Superficie de la parcela
+R=11
+Tamano.parcela<-(R^2)*pi
+
+#Lado del pixel
+tamano.lado.pixel<-round(sqrt(Tamano.parcela),0)
+tamano.lado.pixel
+```
+
+```r annotate
+## [1] 19
+```
+
+El tamaño de celda sera, por tanto, de 19 m.
+
+### 5.3. Extraccion de las metricas de superficies
+
+Si para computar las metricas a nivel de parcela se empleaba la funcion *plot_metrics()*, para hacerlo a nivel de superficies se utiliza la funcion *grid_metrics()*, que calcula las estadisticas que se han definido en el ejercicio anterior para el conjunto de datos LiDAR dentro de cada pixel de un raster. En el parametro *res* se indica el tamaño de celda de 19 m.
+
+```r
+#Activacion de las librerias necesarias
+library(lidR)
+library(moments)
+
+#Calculo de metricas en toda la superficie
+metricas.superf <- grid_metrics(catalogo_norm,
+                                ~metricas(Z), res = 19)
+metricas.superf
+```
+
+```r annotate
+## class      : RasterBrick 
+## dimensions : 212, 211, 44732, 15  (nrow, ncol, ncell, nlayers)
+## resolution : 19, 19  (x, y)
+## extent     : 533995, 538004, 4117984, 4122012  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      :          n,       zmin,      zmean,       zmax,        zsd,      zskew,      zkurt,       zq25,       zq50,       zq60,       zq75,       zq80,       zq90, zpabovezmean,  zpabovez2 
+## min values :  17.000000, -22.684000,  -1.419597,   0.000000,   0.000000,  -2.548080,   1.101600,  -1.948000,  -1.410000,  -1.260800,  -1.032750,  -0.947000,  -0.715600,     0.000000,   0.000000 
+## max values : 5502.00000,    0.00000,   16.43545,  280.16400,   13.47157,   19.48124,  401.31393,   16.60000,   19.65100,   20.23920,   21.66200,   22.70220,   24.43440,     82.97000,   94.39000
+```
+
+El resultado consiste en un objeto multicapa raster con la resolucion de 19 m y con la misma extension y sistema de referencia que los datos LiDAR descargados. Cada una de las capas corresponde a cada metrica definida en la funcion *metricas* creada en el ejercicio anterior.
+
+```r
+#Capas de metricas
+names(metricas.superf)
+```
+
+```r annotate
+##  [1] "n"            "zmin"         "zmean"        "zmax"         "zsd"         
+##  [6] "zskew"        "zkurt"        "zq25"         "zq50"         "zq60"        
+## [11] "zq75"         "zq80"         "zq90"         "zpabovezmean" "zpabovez2"
+```
+
+Y tambien se pueden visualizar geograficamente.
+
+```r
+#Capas de percentil 50
+plot(metricas.superf$zq50)
+```
+
+![](./Auxiliares/zq50.png)
+
+### 5.4. Resultados de variables de inventario
+
+#### 5.4.1. Con la funcion *predict()*
+
+La funcion *predict()* se utiliza para predecir resultados de un modelo sobre nuevos valores. En este ejemplo, los nuevos valores corresponden al raster de percentil 50 de toda la superficie de estudio.
+
+```r
+#Aplicar la prediccion del modeloal raster de percentil 50
+G.predict<-predict(metricas.superf$zq50,modelo.G)
+G.predict
+```
+
+```r annotate
+## class      : RasterLayer 
+## dimensions : 212, 211, 44732  (nrow, ncol, ncell)
+## resolution : 19, 19  (x, y)
+## extent     : 533995, 538004, 4117984, 4122012  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : layer 
+## values     : 7.514767, 58.84476  (min, max)
+```
+
+El resultado consiste en una capa raster cuyos valores corresponden directamente a valores de area basimetrica expresados en $m^{2}/ha$, que es la misma unidad de medida con la que se introdujeron los valores desde la tabla de datos de campo al modelo.
+
+```r
+#Visualizar raster de area basimetrica
+library(mapview())
+mapview(G.predict,layer.name = "area basimetrica",
+        map.type = "Esri.WorldImagery")
+```
+
+![](./Auxiliares/G.png)
+
+#### 5.4.2. Aplicando la ecuacion de la regresion lineal
+
+El resultado del modelo lineal simple que se ha cread es una ecuacion lineal. Se pueden conocer cual es la estimacion del parametro $b_{0}$ y del $b_{1}$ llamando a los coeficientes del modelo
+
+```r
+#Coeficientes del modelo modelo lineal
+modelo.G$coefficients
+```
+
+```r annotate
+## (Intercept)        zq50 
+##   10.951227    2.437206
+```
+
+Y calcular el modelo siguiendo dicha ecuacion.
+
+```r
+#Coeficientes del modelo modelo lineal
+G.predict2<-modelo.G$coefficients[1] +
+        modelo.G$coefficients[2]*metricas.superf$zq50
+G.predict2
+```
+
+```r annotate
+## class      : RasterLayer 
+## dimensions : 212, 211, 44732  (nrow, ncol, ncell)
+## resolution : 19, 19  (x, y)
+## extent     : 533995, 538004, 4117984, 4122012  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+## source     : memory
+## names      : zq50 
+## values     : 7.514767, 58.84476  (min, max)
+```
+
+El resultado sigue siendo un raster cuyos valores corresponden a la estimacion segun el modelo en cada unidad de celda del area basimetrica expresados en $m^{2}/ha$.
+
+Y su representacion cartografica es exactamente igual a la anterior.
+
+```r
+#Visualizar raster de area basimetrica
+mapview(G.predict2,layer.name = "area basimetrica",
+        map.type = "Esri.WorldImagery")
+```
+
+![](./Auxiliares/G.png)
+
+### 5.5. Guardar resultados
+
+Finalmente, se guardan los resultados para poder emplearlo en un programa de sistema de informacion geografica como ArcGIS o QGIS.
+
+```r
+#Guardar raster
+writeRaster(G.predict,
+            filename="E:/DESCARGA/G.tif",                    #Adaptar a la ruta deseada
+            format = "GTiff", # guarda como geotiff
+            datatype='FLT4S') # guarda en valores decimales
+```
