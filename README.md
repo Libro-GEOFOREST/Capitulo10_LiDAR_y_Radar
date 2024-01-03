@@ -70,6 +70,13 @@ Para ver el bloque de cabecera del catálogo, se puede acceder a la tabla en don
 catalogo@data
 ```
 
+File.Signature | File.Source.ID | GUID | Version.Major | Version.Minor | System.Identifier | Generating.Software | File.Creation.Day.of.Year | File.Creation.Year | Header.Size | Offset.to.point.data | Number.of.variable.length.records | Point.Data.Format.ID | Point.Data.Record.Length | Number.of.point.records | X.scale.factor | Y.scale.factor | Z.scale.factor | X.offset | Y.offset | Z.offset | Max.X | Min.X | Max.Y | Min.Y | Max.Z | Min.Z | CRS | Number.of.1st.return | Number.of.2nd.return | Number.of.3rd.return | Number.of.4th.return | Number.of.5th.return | filename
+--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
+LASF | 0 | 00000000-0000-0000-0000-000000000000 | 1 | 2 | | TerraScan | 13 | 2017 | 227 | 633 | 3 | 3 | 34 | 4976583 | 0.001 | 0.001 | 0.001 | 534000 | 4118000 | 0 | 536000 | 534000 | 4120000 | 4118000 | 1963.45 | 1843.33 | 25830 | 3893823 | 1072023 | 10705 | 32 | 0 | E:/DESCARGA/PNOA_2014_AND-SE_534-4120_ORT-CLA-CIR.laz
+LASF | 0 | 00000000-0000-0000-0000-000000000000 | 1 | 2 | | TerraScan | 13 | 2017 | 227 | 633 | 3 | 3 | 34 | 4633930 | 0.001 | 0.001 | 0.001 | 534000 | 4120000 | 0 | 536000 | 534000 | 4122000 | 4120000 | 1991.47 | 1698.75 | 25830 | 3970075 | 660084 | 3718 | 53 | 0 | E:/DESCARGA/PNOA_2014_AND-SE_534-4122_ORT-CLA-CIR.laz
+LASF | 0 | 00000000-0000-0000-0000-000000000000 | 1 | 2 | | TerraScan | 13 | 2017 | 227 | 633 | 3 | 3 | 34 | 5247509 | 0.001 | 0.001 | 0.001 | 536000 | 4118000 | 0 | 538000 | 536000 | 4120000 | 4118000 | 2060.91 | 1700.38 | 25830 | 4025607 | 1210920 | 10887 | 95 | 0 | E:/DESCARGA/PNOA_2014_AND-SE_536-4120_ORT-CLA-CIR.laz
+LASF | 0 | 00000000-0000-0000-0000-000000000000 | 1 | 2 | | TerraScan | 13 | 2017 | 227 | 633 | 3 | 3 | 34 | 4550014 | 0.001 | 0.001 | 0.001 | 536000 | 4120000 | 0 | 538000 | 536000 | 4122000 | 4120000 | 2052.63 | 1547.24 | 25830 | 3698568 | 838536 | 12721 | 189 | 0 | E:/DESCARGA/PNOA_2014_AND-SE_536-4122_ORT-CLA-CIR.laz
+
 En él se puede identificar la versión LAS de los datos, el ID del proyecto, el software generador, la fecha de creación del archivo y la extensión del proyecto, entre otra información.
 
 Un paso importante en el procesado de datos LiDAR es asegurarse que los archivos están completos y son válidos. Para ello, se realiza una inspección de la consistecia de los archivos del catálogo a través de la función *las_check()*.
