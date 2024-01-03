@@ -101,74 +101,74 @@ $$Z_{coordenada}=(Z_{registrado} *Z_{escalado} )+Z_{offset} $$
 ```r
 #Valores de offset de los archivos del catalogo. Coordenada X
 catalogo@data$X.offset
-´´´
+```
 
 ```r annotate
 ## [1] 534000 534000 536000 536000
-´´´
+```
 
 ```r
 #Valores de offset de los archivos del catalogo. Coordenada Y
 catalogo@data$Y.offset
-´´´
+```
 
 ```r annotate
 ## [1] 4118000 4120000 4118000 4120000
-´´´
+```
 
 ```r
 #Valores de offset de los archivos del catalogo. Coordenada Z
 catalogo@data$Z.offset
-´´´
+```
 
 ```r annotate
 ## [1] 0 0 0 0
-´´´
+```
 
 ```r
 #Valores mínimos de los archivos del catalogo. Coordenada X
 catalogo@data$Min.X
-´´´
+```
 
 ```r annotate
 ## [1] 534000 534000 536000 536000
-´´´
+```
 
 ```r
 #Valores máximos de los archivos del catalogo. Coordenada X
 catalogo@data$Max.X
-´´´
+```
 
 ```r annotate
 ## [1] 536000 536000 538000 538000
-´´´
+```
 
 ```r
 #Valores mínimos de los archivos del catalogo. Coordenada Y
 catalogo@data$Min.Y
-´´´
+```
 
 ```r annotate
 ## [1] 4118000 4120000 4118000 4120000
-´´´
+```
 
 ```r
 #Valores máximos de los archivos del catalogo. Coordenada Y
 catalogo@data$Max.Y
-´´´
+```
 
 ```r annotate
 ## [1] 4120000 4122000 4120000 4122000
-´´´
+```
 
 ```r
 #Valores mínimos de los archivos del catalogo. Coordenada Z
 catalogo@data$Min.Z
-´´´
+```
 
 ```r annotate
 ## [1] 1843.33 1698.75 1700.38 1547.24
-´´´
+```
 
 ```r
 #Valores máximos de los archivos del catalogo. Coordenada Z
@@ -177,7 +177,7 @@ catalogo@data$Max.Z
 
 ```r annotate
 ## [1] 1963.45 1991.47 2060.91 2052.63
-´´´
+```
 
 El valor de los offsets en X e Y coinciden con sus valores mínimos respectivos en los 4 archivos. Resulta evidente que se trata de un error en la cabecera y que los valores de offset deberían ser 0 en las 3 dimensiones. Para corregir la incosistencia, se cambia el valor de los offsets:
 
