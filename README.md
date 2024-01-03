@@ -86,7 +86,7 @@ Un paso importante en el procesado de datos LiDAR es asegurarse que los archivos
 las_check(catalogo)
 ```
 
-![](./Auxiliares/las_check.PNG)
+![](./Auxiliares/las_check.png)
 
 La función muestra que existen incoherencias respecto a los offsets (compensaciones). Además indica que los datos no están normalizados, ni indexados.
 
@@ -190,7 +190,7 @@ catalogo@data$Y.offset<-c(0,0,0,0)
 las_check(catalogo)#Ya está corregido
 ```
 
-![](./Auxiliares/las_check2.PNG)
+![](./Auxiliares/las_check2.png)
 
 #### 2.1.2. Como un único archivo
 
@@ -247,7 +247,7 @@ library(mapview)
 plot(catalogo, map = TRUE, map.type = "Esri.WorldImagery")
 ```
 
-![](./Auxiliares/mapa.PNG)
+![](./Auxiliares/mapa.png)
 
 Para visualizar la nube de puntos en 3 dimensiones se ha seleccionado una zona según sus coordenadas.
 
@@ -264,7 +264,7 @@ recorte<-clip_rectangle(lidar534_4120,
 plot(recorte)
 ```
 
-![](./Auxiliares/recorte.PNG)
+![](./Auxiliares/recorte.png)
 
 Se pueden cambiar algunas opciones para mejorar la visualización de los datos como el fondo, la presencia de ejes guía en cada dimensión y la presencia de leyenda del mapa.
 
@@ -272,7 +272,7 @@ Se pueden cambiar algunas opciones para mejorar la visualización de los datos c
 plot(recorte,bg = "white", axis = TRUE, legend = TRUE)
 ```
 
-![](./Auxiliares/recorte2.PNG)
+![](./Auxiliares/recorte2.png)
 
 ##### Con un catálogo de datos
 
@@ -334,7 +334,7 @@ recorte_catalogo<-readLAS((catalogo[[34]][1]),select = "xyz",
 plot(recorte_catalogo)
 ```
 
-![](./Auxiliares/recorte1b.PNG)
+![](./Auxiliares/recorte1b.png)
 
 Como se puede observar, el resultado es el mismo.
 
@@ -374,7 +374,7 @@ mapview(densidad[[2]],
         at = c(0,0.3,1,2,3,4,5))
 ```
 
-![](./Auxiliares/densidad.PNG)
+![](./Auxiliares/densidad.png)
 
 ##### Con un catálogo de datos
 
@@ -396,7 +396,7 @@ densidad_catalogo
 ## values     : 0, 68.92  (min, max)
 ```
 
-![](./Auxiliares/densidad_catalogo.PNG)
+![](./Auxiliares/densidad_catalogo.png)
 
 ```r
 mapview(densidad_catalogo,
@@ -404,7 +404,7 @@ mapview(densidad_catalogo,
         at = c(0,0.3,1,2,3,4,5))
 ```
 
-![](./Auxiliares/densidad_catalogo2.PNG)
+![](./Auxiliares/densidad_catalogo2.png)
 
 Como puede comprobarse, aunque el valor medio de la densidad de puntos del archivo (1.2) supera con creces los requisitos del proyecto LiDAR-PNOA (0.5 pulsos/m^2^), la distribución de los mismos no es homogenea. En las zonas de solape entre líneas de vuelo es considerablemente mayor que en las posiciones intermedias, en las que llegan a encontrarse huecos. Dicha distribución tendrá consecuencias en la obtención de las variables dasométricas del inventario.
 
@@ -414,7 +414,7 @@ Cuando en el Pliego de Prescripciones Tecnicas solicitado en un vuelo LiDAR se i
 
 La sociedad americana de fotogrametría y teledetección (ASPRS) establece la codificación de las clasificaciones de puntos LiDAR según la siguiente tabla:
 
-![](./Auxiliares/clasificacion.PNG)
+![](./Auxiliares/clasificacion.png)
 
 En nuestros datos la clasificación es la siguiente.
 
@@ -436,7 +436,7 @@ También se puede visualizar la nube de puntos según la clasificación que ha r
 plot(recorte,color="Classification",axis = TRUE, legend = TRUE)
 ```
 
-![](./Auxiliares/clasificacion2.PNG)
+![](./Auxiliares/clasificacion2.png)
 
 O comprobar los retornos que han sido clasificados como suelo.
 
@@ -448,7 +448,7 @@ plot(recorte[which(recorte$Classification==2),],
      color="Classification",axis = TRUE)
 ```
 
-![](./Auxiliares/suelo.PNG)
+![](./Auxiliares/suelo.png)
 
 #### 2.2.4 Comprobacion de ángulos de escaneo de vuelo
 
@@ -470,7 +470,7 @@ summary(lidar534_4120@data$ScanAngleRank)
 plot(recorte,color="ScanAngleRank",axis = TRUE)
 ```
 
-![](./Auxiliares/angulo_escaneo.PNG)
+![](./Auxiliares/angulo_escaneo.png)
 
 #### 2.2.5. Comprobar solapes entre líneas de vuelo
 
@@ -482,7 +482,7 @@ plot(recorte[which(recorte$Classification==12),],
      color="Classification",axis = TRUE)
 ```
 
-![](./Auxiliares/lineas_escaneo.PNG)
+![](./Auxiliares/lineas_escaneo.png)
 
 ```r
 solape <- grid_metrics(lidar534_4120,
@@ -506,7 +506,7 @@ solape
 mapview(solape)
 ```
 
-![](./Auxiliares/solape.PNG)
+![](./Auxiliares/solape.png)
 
 #### 2.2.6. Comprobar líneas de vuelo
 
@@ -529,7 +529,7 @@ lidar534_4120<-retrieve_flightlines(lidar534_4120, dt = 30)
 plot(lidar534_4120, color = "flightlineID")
 ```
 
-![](./Auxiliares/lineas_vuelo.PNG)
+![](./Auxiliares/lineas_vuelo.png)
 
 Y también se puede estimar la posición del sensor y, por tanto, la del avión o UAV en el que iba montado, a través de la función *track_sensor()*
 
@@ -558,7 +558,7 @@ x<-plot(lidar534_4120)
 add_flightlines3d(x, lineas_vuelo, radius = 10)
 ```
 
-![](./Auxiliares/lineas_vuelo2.PNG)
+![](./Auxiliares/lineas_vuelo2.png)
 
 Para un catálogo de datos, se haría de la siguiente forma:
 
@@ -570,7 +570,7 @@ plot(catalogo)
 plot(lineas_vuelo_catalogo, add = TRUE)
 ```
 
-![](./Auxiliares/lineas_vuelo3.PNG)
+![](./Auxiliares/lineas_vuelo3.png)
 
 ### 2.3. Crear raster de intensidades
 
@@ -588,7 +588,7 @@ plot(recorte,color="Intensity",
      colorPalette=gray.colors(10, start = 0, end = 1))
 ```
 
-![](./Auxiliares/intensidad.PNG)
+![](./Auxiliares/intensidad.png)
 
 ```r
 #Generar raster de intensidades
@@ -619,7 +619,7 @@ mapview(intensidad,
 
 ```
 
-![](./Auxiliares/intensidad2.PNG)
+![](./Auxiliares/intensidad2.png)
 
 ## 3. Generación de Modelo del Terreno, Modelo de Superficies y Modelo de Vegetación
 
@@ -673,7 +673,7 @@ mapview(densidad_suelo[[1]],
         at = c(0,0.05,0.1,0.2,0.3,0.4,0.5,2))
 ```
 
-![](./Auxiliares/densidad_suelo.PNG)
+![](./Auxiliares/densidad_suelo.png)
 
 Se observa en el mapa que existen zonas con densidades de puntos de suelo por debajo de la densidad media. Sería conveniente generar el modelo, teniéndolas en cuenta y, por eso, se ajusta a la separación máxima de pulsos proveniente de los valores mínimos de densidad de puntos de suelo. 
 
@@ -714,7 +714,7 @@ mapview(mdt,col = terrain.colors(50),maxpixels=1000000,
         map.type = "Esri.WorldImagery")
 ```
 
-![](./Auxiliares/mdt.PNG)
+![](./Auxiliares/mdt.png)
 
 Como puede apreciarse, los valores de alturas del terreno en esta zona varían entre los 1843 m y los 1960 m de altitud.
 
@@ -735,7 +735,7 @@ mapview(pendiente_grados,col = terrain.colors(50),maxpixels=1000000,
         map.type = "Esri.WorldImagery")
 ```
 
-![](./Auxiliares/pendientes.PNG)
+![](./Auxiliares/pendientes.png)
 
 ##### Orientaciones
 ```r
@@ -789,7 +789,7 @@ mapview(orientacion_reclas,
         maxpixels=1000000, map.type = "Esri.WorldImagery")
 ```
 
-![](./Auxiliares/orientaciones.PNG)
+![](./Auxiliares/orientaciones.png)
 
 ##### Mapa de Sombras
 ```r
@@ -799,7 +799,7 @@ mapview(sombras,col.regions=hcl.colors(255,"Gray"),maxpixels=1000000,
         map.type = "Esri.WorldImagery")
 ```
 
-![](./Auxiliares/sombras.PNG)
+![](./Auxiliares/sombras.png)
 
 ### 3.2. Generar el modelo digital de superficies o MDS
 
@@ -830,7 +830,7 @@ Y su visualización
 mapview(mds,col.regions=hcl.colors(255,"Gray"),maxpixels=1000000)
 ```
 
-![](./Auxiliares/mds.PNG)
+![](./Auxiliares/mds.png)
 
 Aunque no difiere mucho del MDT, en el mapa se pueden intuir zonas rasas sin arbolado y zonas con vegetación.
 
@@ -865,7 +865,7 @@ Si se observa el rango de valores del raster resultante aparecen valores negativ
 hist(nmds1,breaks=250,xlim=c(-2.5,0))
 ```
 
-![](./Auxiliares/histograma.PNG)
+![](./Auxiliares/histograma.png)
 
 Y se visualiza:
 
@@ -874,7 +874,7 @@ mapview(nmds1,col.regions=rev(hcl.colors(17,"Spectral")),
         at = c(-Inf,0,1,2,3,4,5,6,7,8,9,10,11,13,14,15),maxpixels=1000000)
 ```
 
-![](./Auxiliares/nmds1.PNG)
+![](./Auxiliares/nmds1.png)
 
 Como se observa en el mapa, la vegetación de la zona alcanza alturas inferiores a 15 m.
 
@@ -899,7 +899,7 @@ plot(recorte_norm,bg = "white", axis = TRUE,
      legend = TRUE,size = 3)
 ```
 
-![](./Auxiliares/normalizado.PNG)
+![](./Auxiliares/normalizado.png)
 
 Se puede comparar esta imagen con la generada en la visualización de los datos sin normalizar del ejercicio de visualización de datos LiDAR y cómo el efecto del terreno ha desaparecido.
 
@@ -918,7 +918,7 @@ mapview(nmds2,col.regions=rev(hcl.colors(17,"Spectral")),
         maxpixels=1000000)
 ```
 
-![](./Auxiliares/nmds2.PNG)
+![](./Auxiliares/nmds2.png)
 
 ## 4. Extracción de métricas de parcela y modelización de variables de inventario
 
