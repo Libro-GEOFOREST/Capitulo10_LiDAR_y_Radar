@@ -222,13 +222,14 @@ A veces también se registra:
 #Vamos a ver el interior de los datos. Sólo los 6 primeros
 head(lidar534_4120@data)
 ```
-
-```r
-#Vamos a ver el interior de los datos. Sólo los 6 primeros
-kable(head(lidar534_4120@data))%>%
-        kable_styling(font_size=10)%>%
-        scroll_box(width="900px")
-```
+X | Y | Z | gpstime | Intensity | ReturnNumber | NumberOfReturns | ScanDirectionFlag | EdgeOfFlightline | Classification | Synthetic_flag | Keypoint_flag | Withheld_flag | ScanAngleRank | UserData | PointSourceID | R | G | B
+--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
+534000.0 | 4119123 | 1926.30 | 103038679 | 88 | 1 | 1 | 0 | 0 | 12 | FALSE | FALSE | FALSE | -16 | 0 | 197 | 41984 | 43008 | 37888
+534000.0 | 4119123 | 1926.33 | 103038679 | 91 | 1 | 1 | 0 | 0 | 12 | FALSE | FALSE | FALSE | -16 | 0 | 197 | 41728 | 42752 | 37632
+534000.1 | 4119123 | 1926.30 | 103038679 | 84 | 1 | 1 | 0 | 0 | 12 | FALSE | FALSE | FALSE | -16 | 0 | 197 | 41472 | 42496 | 37376
+534000.1 | 4119122 | 1926.28 | 103038679 | 86 | 1 | 1 | 0 | 0 | 12 | FALSE | FALSE | FALSE | -16 | 0 | 197 | 41216 | 41984 | 36864
+534000.2 | 4119122 | 1926.22 | 103038679 | 86 | 1 | 1 | 0 | 0 | 12 | FALSE | FALSE | FALSE | -16 | 0 | 197 | 40960 | 41472 | 36608
+534000.2 | 4119122 | 1926.22 | 103038679 | 89 | 1 | 1 | 0 | 0 | 12 | FALSE | FALSE | FALSE | -16 | 0 | 197 | 40960 | 41216 | 36352
 
 ### 2.2. Comprobaciones de la información LiDAR
 
