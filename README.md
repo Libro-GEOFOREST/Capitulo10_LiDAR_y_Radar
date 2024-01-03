@@ -242,7 +242,7 @@ Visualizar un catalogo de datos LiDAR sobre un mapa permite comprobar que se aju
 ```r
 #Visualizar el catalogo sobre un mapa
 #Necesita tener instalada la libreria mapview
-#En caso de no tenerla instalada ejecutar la función install.packaques()
+#En caso de no tenerla instalada ejecutar la función install.packages()
 #install.packages("mapview")
 library(mapview)
 plot(catalogo, map = TRUE, map.type = "Esri.WorldImagery")
@@ -285,10 +285,10 @@ catalogo@data$filename
 ```
 
 ```r annotate
-## [1] "E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_534-4120_ORT-CLA-CIR.laz"
-## [2] "E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_534-4122_ORT-CLA-CIR.laz"
-## [3] "E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_536-4120_ORT-CLA-CIR.laz"
-## [4] "E:/MOOC_LiDAR/Descarga/PNOA_2014_AND-SE_536-4122_ORT-CLA-CIR.laz"
+## [1] "E:/DESCARGA/PNOA_2014_AND-SE_534-4120_ORT-CLA-CIR.laz"
+## [2] "E:/DESCARGA/PNOA_2014_AND-SE_534-4122_ORT-CLA-CIR.laz"
+## [3] "E:/DESCARGA/PNOA_2014_AND-SE_536-4120_ORT-CLA-CIR.laz"
+## [4] "E:/DESCARGA/PNOA_2014_AND-SE_536-4122_ORT-CLA-CIR.laz"
 ```
 
 ```r
