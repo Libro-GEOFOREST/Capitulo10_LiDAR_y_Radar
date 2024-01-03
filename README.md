@@ -667,6 +667,7 @@ densidad_suelo
 ## values     : 0, 2.36  (min, max)
 ```
 
+```r
 #Visualización de la distribución espacial de la densidad de los puntos de suelo
 library(mapview)
 mapview(densidad_suelo[[1]],
