@@ -92,11 +92,11 @@ La función muestra que existen incoherencias respecto a los offsets (compensaci
 
 Los campos de offsets deben usarse para establecer la compensación general para la localización de los registros de puntos. En general, estos números serán cero, pero en ciertos casos, la resolución de los datos de puntos puede no ser lo suficientemente grande para un sistema de proyección dado. Sin embargo, siempre se debe suponer que se utilizan estos números. Entonces, para escalar una X dada desde el registro de puntos, tome el registro de puntos X multiplicado por el factor de escala de X y luego agregue el desplazamiento de X.
 
-$X~coordenada~=(X~registrado~*X~escalado~)+X~offset~$
+$$X_coordenada=(X_registrado *X_escalado )+X_offset $$
 
-$Y~coordenada~=(Y~registrado~*Y~escalado~)+Y~offset~$
+$$Y_coordenada=(Y_registrado *Y_escalado )+Y_offset $$
 
-$Z~coordenada~=(Z~registrado~*Z~escalado~)+Z~offset~$
+$$Z_coordenada=(Z_registrado *Z_escalado )+Z_offset $$
 
 ```r
 #Valores de offset de los archivos del catalogo. Coordenada X
