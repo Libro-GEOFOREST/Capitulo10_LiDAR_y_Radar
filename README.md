@@ -6,7 +6,7 @@ En el presente ejercicio se va a aprender a visualizar y manipular datos LiDAR p
 
 Para la descarga de datos LiDAR-PNOA de la primera cobertura, se aconseja que se sigan las instrucciones del siguiente video utilizando la zona de estudio descargable en [aqui](./Limite_monte) 
 
-[![Alt text](https://img.youtube.com/vi/2u88We_Zyzg/0.jpg)](https://www.youtube.com/watch?v=2u88We_Zyzg)
+[<img src="https://img.youtube.com/vi/2u88We_Zyzg/0.jpg" width=100%>](https://www.youtube.com/watch?v=2u88We_Zyzg)
 
 A modo de guía, se presentan algunas imágenes:
 
