@@ -1070,7 +1070,7 @@ plot(MgC_PH)
 ![](https://github.com/Libro-GEOFOREST/Capitulo10_LiDAR_y_Radar/blob/main/Auxiliares/MgC_PH.png)
 
 ```r 
- correspondientes a PP
+#cortamos al area de los poligonos correspondientes a PP
 MgC_PH_mask <- mask(MgC_PH, pinus_PH)
 
 #Guardamos resultados en el disco
